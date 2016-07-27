@@ -22,7 +22,12 @@ public class CheckinService {
     }
 
     private static Position ouSuisJe(Player player) {
-        return null;
+        Position position = new Position();
+        position.latitude=player.position.latitude;
+        position.longitude=player.position.longitude;
+        return position;
+
+
     }
 
     private static Zone dansQuelleZone(float latitude, float longitude) {
