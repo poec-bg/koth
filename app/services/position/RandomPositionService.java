@@ -1,8 +1,7 @@
-package services;
+package services.position;
 
 import models.Player;
 import models.Position;
-import services.position.PositionService;
 
 public class RandomPositionService extends PositionService {
 
