@@ -23,7 +23,7 @@ public class Application extends Controller {
             }
         });
         Checkin checkin = CheckinService.checkin(PlayerService.getRandom());
-        render();
+        render(checkin);
     }
 
 }

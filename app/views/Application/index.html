@@ -1,4 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{welcome /}
+<p>${checkin.date.format("dd/MM/yyyy HH:mm")}</p>
+<p>${checkin.latitude} / ${checkin.longitude}</p>
+<p>${checkin.player.firstName} ${checkin.player.lastName}</p>
+<p>${checkin.zone.x} / ${checkin.zone.y} : ${checkin.zone.ressource.getLabel()}</p>
