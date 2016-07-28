@@ -1,6 +1,11 @@
 package models;
 
-public class Player {
+import play.db.jpa.Model;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Player extends Model {
 
     public String email;
     public String password;
