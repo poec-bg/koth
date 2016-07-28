@@ -17,9 +17,5 @@ public abstract class DateService {
         instance = dateService;
     }
 
-    public DateTime now() {
-        return instance.currentDateTime();
-    }
-
     public abstract DateTime currentDateTime();
 }

@@ -5,3 +5,41 @@
 <p>${checkin.latitude} / ${checkin.longitude}</p>
 <p>${checkin.player.firstName} ${checkin.player.lastName}</p>
 <p>${checkin.zone.x} / ${checkin.zone.y} : ${checkin.zone.ressource.getLabel()}</p>
+
+<ul>
+    <li><a href="@{Application.index()}">random</a></li>
+    <li><a href="@{Application.m2i()}">m2i</a></li>
+</ul>
+
+<div id="map"></div>
+<script>
+    function initMap() {
+        var centre = {lat: ${checkin.latitude}, lng: ${checkin.longitude}};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: centre,
+            scrollwheel: false,
+            zoom: 16
+        });
+        var marker = new google.maps.Marker({
+            position: centre,
+            map: map,
+            title: '${checkin.player.firstName} ${checkin.player.lastName} est là!'
+        });
+        var rectangle = new google.maps.Rectangle({
+            strokeColor: '${checkin.zone.ressource.getColor()}',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '${checkin.zone.ressource.getColor()}',
+            fillOpacity: 0.35,
+            map: map,
+            bounds: {
+                north: ${checkin.zone.topLatitude},
+                south: ${checkin.zone.bottomLatitude},
+                east: ${checkin.zone.bottomLongitude},
+                west: ${checkin.zone.topLongitude}
+            }
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYOHMLgnM8nggYrYJ548Mi71S3GV0HmRY&callback=initMap" async defer></script>

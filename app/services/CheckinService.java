@@ -13,13 +13,6 @@ public class CheckinService {
 
     public static Checkin checkin(Player player) {
         Checkin checkin = new Checkin();
-
-        PositionService.get().configureWith(new FixedPositionService() {
-            @Override
-            public Position currentPosition(Player player) {
-                return new Position(49.474298f, 1.110211f);
-            }
-        });
         Position position = PositionService.get().currentPosition(player);
 
         Zone zone = ZoneService.getZone(position);

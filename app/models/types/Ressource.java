@@ -2,15 +2,21 @@ package models.types;
 
 public enum Ressource {
 
-    JAUNE("Jaune"), ROUGE("Rouge"), BLEU("Bleu");
+    JAUNE("Jaune", "#ffeb3b"), ROUGE("Rouge", "#f44336"), BLEU("Bleu", "#2196f3");
 
-    String label;
+    private String label;
+    private String color;
 
-    Ressource(String label) {
+    Ressource(String label, String color) {
         this.label = label;
+        this.color = color;
     }
 
     public String getLabel() {
         return label;
+    }
+
+    public String getColor() {
+        return color;
     }
 }
