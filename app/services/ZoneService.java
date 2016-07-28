@@ -1,5 +1,6 @@
 package services;
 
+import models.Zone;
 import models.types.Ressource;
 
 public class ZoneService {
@@ -11,4 +12,8 @@ public class ZoneService {
         return Ressource.values()[index];
     }
 
+    public static Zone getDefaultZone() {
+        Zone zoneInit = new Zone(10, 10, 0, 0);
+        return zoneInit;
+    }
 }
