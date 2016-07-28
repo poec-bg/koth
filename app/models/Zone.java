@@ -1,6 +1,5 @@
 package models;
 
-import org.joda.time.DateTime;
 import models.types.Ressource;
 import play.db.jpa.Model;
 

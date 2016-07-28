@@ -6,6 +6,7 @@ import play.mvc.*;
 import java.util.*;
 
 import models.*;
+import services.CheckinService;
 import services.ZoneService;
 import services.position.FixedPositionService;
 import services.position.PositionService;
@@ -20,9 +21,7 @@ public class Application extends Controller {
                 return new Position(49.474298f, 1.110211f);
             }
         });
-
-        Position position = PositionService.get().currentPosition(null);
-        ZoneService.getZone(position);
+        Checkin checkin = CheckinService.checkin(null);
         render();
     }
 

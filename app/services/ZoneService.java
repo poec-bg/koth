@@ -6,16 +6,8 @@ import models.types.Ressource;
 import services.date.DateService;
 
 import java.util.Optional;
-import java.util.Random;
 
 public class ZoneService {
-
-    public static Ressource randomRessource() {
-        double alea = Math.random();
-        int nbRessource = Ressource.values().length;
-        int index = (int) Math.floor(alea * nbRessource);
-        return Ressource.values()[index];
-    }
 
     public static Zone getZone(Position position) {
         int x = getZoneXFromLongitude(position.longitude);
@@ -30,7 +22,10 @@ public class ZoneService {
         }
     }
 
-    public static Zone createZone(int x, int y) {
+    // ----------------------
+    // Private
+
+    private static Zone createZone(int x, int y) {
         Zone zone = new Zone();
         zone.x = x;
         zone.y = y;
@@ -46,8 +41,12 @@ public class ZoneService {
         return zone;
     }
 
-    // ----------------------
-    // Private
+    private static Ressource randomRessource() {
+        double alea = Math.random();
+        int nbRessource = Ressource.values().length;
+        int index = (int) Math.floor(alea * nbRessource);
+        return Ressource.values()[index];
+    }
 
     private final static long perimeter = 100000;
     private final static long equator = 121212;

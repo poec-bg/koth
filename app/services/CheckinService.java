@@ -5,6 +5,7 @@ import models.Player;
 import models.Position;
 import models.Zone;
 import org.joda.time.DateTime;
+import services.date.DateService;
 import services.position.FixedPositionService;
 import services.position.PositionService;
 
@@ -21,19 +22,15 @@ public class CheckinService {
         });
         Position position = PositionService.get().currentPosition(player);
 
-        Zone zone = dansQuelleZone(position.latitude, position.longitude);
+        Zone zone = ZoneService.getZone(position);
 
-        checkin.date = DateTime.now();
+        checkin.date = DateService.get().currentDateTime().toDate();
         checkin.latitude = position.latitude;
         checkin.longitude = position.longitude;
         checkin.player = player;
         checkin.zone = zone;
-
+        checkin.save();
         return checkin;
-    }
-
-    private static Zone dansQuelleZone(float latitude, float longitude) {
-        return null;
     }
 
 }
