@@ -67,7 +67,7 @@ public class ZoneService {
     }
 
     private static Optional<Zone> getZoneFromCoordinates(int x, int y) {
-        return Optional.ofNullable(Zone.find("x=? AND y=?", x, y).first());
+        return Optional.ofNullable(Zone.find("x=?1 AND y=?2", x, y).first());
     }
 
 }
