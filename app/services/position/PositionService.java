@@ -18,5 +18,6 @@ public abstract class PositionService {
         instance = positionService;
     }
 
+
     public abstract Position currentPosition(Player player);
 }
