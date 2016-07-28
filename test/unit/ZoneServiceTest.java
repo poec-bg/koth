@@ -1,8 +1,9 @@
-package services;
+package unit;
 
 import models.types.Ressource;
 import org.junit.Test;
 import play.test.UnitTest;
+import services.ZoneService;
 
 import java.util.Arrays;
 

@@ -1,10 +1,26 @@
 package models;
 
-import org.joda.time.DateTime;
+import models.types.ActionPossible;
+import play.db.jpa.Model;
 
-public class Action {
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import java.util.Date;
+
+@Entity
+public class Action extends Model {
+
+    @ManyToOne
     public Player player;
+
+    @ManyToOne
     public Zone zone;
-    public String action;
-    public DateTime date;
+
+    @Enumerated(EnumType.STRING)
+    public ActionPossible action;
+
+    public Date date;
+
 }

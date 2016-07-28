@@ -4,9 +4,7 @@ import models.Checkin;
 import models.Player;
 import models.Position;
 import models.Zone;
-import org.joda.time.DateTime;
 import services.date.DateService;
-import services.position.FixedPositionService;
 import services.position.PositionService;
 
 public class CheckinService {
@@ -26,4 +24,7 @@ public class CheckinService {
         return checkin;
     }
 
+    public static Checkin getCheckin(String idCheckin) {
+        return Checkin.findById(Long.parseLong(idCheckin));
+    }
 }

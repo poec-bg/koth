@@ -1,9 +1,10 @@
-package services;
+package unit;
 
 import models.Checkin;
 import models.types.ActionPossible;
 import org.junit.Test;
 import play.test.UnitTest;
+import services.ActionService;
 
 import java.util.List;
 
