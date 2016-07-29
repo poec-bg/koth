@@ -24,6 +24,10 @@ public class ZoneService {
         }
     }
 
+    public static ZoneState getZoneState(Zone zone) {
+        return ZoneState.find("zone.id = ?1", zone.id).first();
+    }
+
     public static void updateZoneState(Action action) {
         ZoneState zoneState = ZoneState.find("zone.id = ?1", action.zone.id).first();
         if (zoneState == null) {

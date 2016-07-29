@@ -1,14 +1,9 @@
 package controllers;
 
-import models.Checkin;
-import models.Player;
-import models.Position;
-import models.ZoneState;
+import models.*;
 import models.types.ActionPossible;
 import play.mvc.Controller;
-import services.ActionService;
-import services.CheckinService;
-import services.PlayerService;
+import services.*;
 import services.position.FixedPositionService;
 import services.position.PositionService;
 import services.position.RandomPositionService;
@@ -21,7 +16,10 @@ public class Application extends Controller {
         PositionService.get().configureWith(new RandomPositionService());
         Checkin checkin = CheckinService.checkin(PlayerService.getRandom());
         List<ActionPossible> actionsPossibles = ActionService.listerAction(checkin);
-        render(checkin, actionsPossibles);
+        ZoneState zoneState = ZoneService.getZoneState(checkin.zone);
+        List<Salutation> salutations = SalutationService.findUnreadForPlayer(checkin.player);
+        SalutationService.markAsRead(salutations);
+        render(checkin, zoneState, actionsPossibles, salutations);
     }
 
     public static void zone(float latitude, float longitude) {
@@ -31,10 +29,17 @@ public class Application extends Controller {
                 return new Position(latitude, longitude);
             }
         });
+
         Checkin checkin = CheckinService.checkin(PlayerService.getRandom());
+
         List<ActionPossible> actionsPossibles = ActionService.listerAction(checkin);
-        ZoneState zoneState = ZoneState.find("zone.id=?1", checkin.zone.id).first();
-        renderTemplate("Application/index.html", checkin, zoneState, actionsPossibles);
+
+        ZoneState zoneState = ZoneService.getZoneState(checkin.zone);
+
+        List<Salutation> salutations = SalutationService.findUnreadForPlayer(checkin.player);
+        SalutationService.markAsRead(salutations);
+
+        renderTemplate("Application/index.html", checkin, zoneState, actionsPossibles, salutations);
     }
 
     public static void action(String idCheckin, String actionPossible) {

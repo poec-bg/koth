@@ -2,6 +2,7 @@ package services;
 
 import models.Action;
 import models.Checkin;
+import models.Salutation;
 import models.ZoneState;
 import models.types.ActionPossible;
 import org.joda.time.DateTime;
@@ -35,6 +36,10 @@ public class ActionService {
 
         if(action.action.equals(ActionPossible.PLANTER_DRAPEAU)) {
             ZoneService.updateZoneState(action);
+        } else if(action.action.equals(ActionPossible.SALUER)) {
+            ZoneState zoneState = ZoneState.find("zone.id = ?1", checkin.zone.id).first();
+            Salutation salutation = new Salutation(checkin.player, zoneState.player);
+            salutation.save();
         }
     }
 }
