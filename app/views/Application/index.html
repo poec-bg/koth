@@ -54,6 +54,8 @@
         var marker = new google.maps.Marker({
             position: centre,
             map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
             title: '${checkin.player.firstName} ${checkin.player.lastName} est là!'
         });
         var rectangle = new google.maps.Rectangle({
