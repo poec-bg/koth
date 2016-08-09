@@ -10,15 +10,18 @@
         <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}"></script>
         <script>
         $(document) .ready(function(){
-        $("div.information") .hide();
-        $("p.menu") .click(function(){
-        $(this) .next("div.information") .slideDown(300) ;
-        });
-        $("p.menu") .dblclick(function(){
-        $(this) .next("div.information") .slideUp("slow");
-        });
+
+            $(".menu") .css("border","1px solid black");
+            $("a") .click(function(){
+                $("div.information") .toggleClass("cacher");
+            });
         });
         </script>
+<style>
+    p{width: 200px;
+    padding: 3px;}
+    .cacher{display: none;}
+</style>
     </head>
     <body>
         #{doLayout /}

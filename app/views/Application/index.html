@@ -1,23 +1,36 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
+
 <ul>
     <li><a href="@{Application.index()}">random</a></li>
     <li><a href="@{Application.zone(49.474298f, 1.110211f)}">m2i</a></li>
 </ul>
 
+<a href="#">Informations : afficher / cacher</a>
+
+<p class="menu">Informations du Checkin </p>
+<div class="information cacher">
 <p>${checkin.date.format("dd/MM/yyyy HH:mm")}</p>
 <p>${checkin.latitude} / ${checkin.longitude}</p>
 <p>${checkin.player.firstName} ${checkin.player.lastName}</p>
+</div>
+
+
+
+<p class="menu"> Informations de la zone</p>
+<div class="information cacher">
+<p>${checkin.zone.x} / ${checkin.zone.y} : ${checkin.zone.ressource.getLabel()} #{if zoneState}=> ${zoneState.player.firstName} ${zoneState.player.lastName} #{if checkin.player.id == zoneState.player.id}: ${zoneState.harvestedQuantity}#{/if}#{/if}</p>
+</div>
+
 #{if salutations}
 <p>
     #{list salutations, as:'salutation'}
-        ${salutation.from.firstName} ${salutation.from.lastName},
+    ${salutation.from.firstName} ${salutation.from.lastName},
     #{/list}
     vous salue !
 </p>
 #{/if}
-<p>${checkin.zone.x} / ${checkin.zone.y} : ${checkin.zone.ressource.getLabel()} #{if zoneState}=> ${zoneState.player.firstName} ${zoneState.player.lastName} #{if checkin.player.id == zoneState.player.id}: ${zoneState.harvestedQuantity}#{/if}#{/if}</p>
 
 #{if zoneState == null || checkin.player.id != zoneState.player.id}
 <ul>
