@@ -1,11 +1,11 @@
-Player(luke.skywalker@gmail.com):
-    email: "luke.skywalker@gmail.com"
-    password: "luke.skywalker@gmail.com"
-    firstName: "Luke"
-    lastName: "Skywalker"
-
-Player(han.solo@gmail.com):
-    email: "han.solo@gmail.com"
-    password: "han.solo@gmail.com"
-    firstName: "Han"
-    lastName: "Solo"
+#Player(luke.skywalker@gmail.com):
+#    email: "luke.skywalker@gmail.com"
+#    usrPassword: "luke.skywalker@gmail.com"
+#    firstName: "Luke"
+#    lastName: "Skywalker"
+#
+#Player(han.solo@gmail.com):
+#    email: "han.solo@gmail.com"
+#    usrPassword: "han.solo@gmail.com"
+#    firstName: "Han"
+#    lastName: "Solo"

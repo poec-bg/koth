@@ -10,9 +10,10 @@ import java.util.Map;
 public class Player extends Model {
 
     public String email;
-    public String password;
+    public String usrPassword;
     public String lastName;
     public String firstName;
+    public boolean isSupprime = false;
 
     @ElementCollection
     @MapKeyColumn(name = "name")

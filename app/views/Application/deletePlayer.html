@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+#{set title:'Supprimer mon compte' /}
+
+#{ifErrors}
+<h1>Oops…</h1>
+#{/ifErrors}
+
+<form action="@{Application.deleteThisPlayer()}" method="post">
+    <h2>Supprimer mon compte</h2>
+    <p>Voulez vous supprimer votre compte ?</p>
+    <p><input type="submit" value="Supprimer">  <a href="@{Application.index()}"> Non je veux rester sur la colline !</a></p>
+</form>

@@ -20,6 +20,15 @@
 
     </head>
     <body>
+
+        #{if controllers.secure.Security.isConnected()}
+        <li><a href="@{secure.Secure.logout()}">Se déconnecter</a></li>
+        <li><a href="@{Application.deletePlayer()}">Supprimer mon compte</a></li>
+        #{/if}
+        #{else}
+        <li><a href="@{secure.Secure.login()}">Se connecter</a></li>
+        #{/else}
+
         #{doLayout /}
         
         <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>

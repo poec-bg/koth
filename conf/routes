@@ -2,8 +2,14 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Secure
+GET	    /login/?			                    secure.Secure.login
+POST    /login                                  secure.Secure.authenticate
+GET     /logout/?                               secure.Secure.logout
+
 # Home page
 GET     /                                       Application.index
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

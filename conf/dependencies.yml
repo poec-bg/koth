@@ -4,3 +4,4 @@ require:
     - play
     - com.google.guava -> guava 19.0
     - org.jsoup -> jsoup 1.9.2
+    - org.mindrot -> jbcrypt 0.3m

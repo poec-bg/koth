@@ -1,7 +1,12 @@
 package controllers;
 
+import controllers.secure.Security;
+import exceptions.InvalidArgumentException;
+import exceptions.MetierException;
 import models.*;
 import models.types.ActionPossible;
+import play.data.validation.Email;
+import play.data.validation.Required;
 import play.mvc.Controller;
 import services.*;
 import services.position.FixedPositionService;
@@ -46,5 +51,52 @@ public class Application extends Controller {
         Checkin checkin = CheckinService.getCheckin(idCheckin);
         ActionService.execute(ActionPossible.valueOf(actionPossible), checkin);
         zone(checkin.latitude, checkin.longitude);
+    }
+
+    public static void newPlayer() {
+        render();
+    }
+
+    public static void createNewPlayer(@Required @Email String email, @Required String usrPassword, @Required String firstName, @Required String lastName) throws Throwable {
+        if (validation.hasErrors()) {
+            params.flash(); // add http parameters to the flash scope
+            validation.keep(); // keep the errors for the next request
+            newPlayer();
+        }
+
+        try {
+            Player player = PlayerService.get().create(email, usrPassword, firstName, lastName );
+        } catch (InvalidArgumentException | MetierException e) {
+            error(e);
+        }
+        Application.index();
+    }
+
+
+
+    public static void deletePlayer() throws Throwable {
+        render();
+    }
+
+    public static void deleteThisPlayer() throws Throwable {
+        Player player = null;
+
+        if (validation.hasErrors()) {
+            params.flash(); // add http parameters to the flash scope
+            validation.keep(); // keep the errors for the next request
+            deletePlayer();
+        }
+
+        try {
+            player = Security.connectedUser();
+            notFoundIfNull(player);
+
+            PlayerService.get().supprimer(player);
+            PlayerService.get().clear();
+
+        } catch (InvalidArgumentException e) {
+            error(e);
+        }
+        Application.index();
     }
 }

@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'Créer mon compte' /}
+
+#{ifErrors}
+<h1>Oops…</h1>
+#{/ifErrors}
+
+<form action="@{Application.createNewPlayer()}" method="post">
+    <h2>Créer mon compte</h2>
+    <p><label>Nom :</label><input type="text" name="lastName"><span class="error">#{error 'nom' /}</span></p>
+    <p><label>Prenom :</label><input type="text" name="firstName"><span class="error">#{error 'prenom' /}</span></p>
+    <p><label>Email :</label><input type="text" name="email"><span class="error">#{error 'email' /}</span></p>
+    <p><label>Mot de passe :</label><input type="password" name="usrPassword"><span class="error">#{error 'motDePasse' /}</span></p>
+    <p><input type="submit" value="Créer"><a href="@{Application.index()}">Annuler</a></p>
+</form>

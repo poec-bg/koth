@@ -1,11 +1,6 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Game' /}
 
-<h1>Bienvenue sur la colline !</h1>
-
-<p>${flash.success}</p>
-
-#{if controllers.secure.Security.isConnected()}
 
 <ul>
     <li><a href="@{Application.index()}">random</a></li>
@@ -84,4 +79,3 @@
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmpV865hh13LoEVwFuYZ8q074DfdWThYY&callback=initMap" async defer></script>
-#{/if}
