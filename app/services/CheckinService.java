@@ -20,6 +20,7 @@ public class CheckinService {
         checkin.longitude = position.longitude;
         checkin.player = player;
         checkin.zone = zone;
+        checkin.player.save(); //a retirer plus tard
         checkin.save();
         return checkin;
     }

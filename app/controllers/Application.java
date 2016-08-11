@@ -18,8 +18,12 @@ import java.util.List;
 public class Application extends Controller {
 
     public static void index() {
+        render();
+    }
+
+    public static void game() {
         PositionService.get().configureWith(new RandomPositionService());
-        Checkin checkin = CheckinService.checkin(PlayerService.getRandom());
+        Checkin checkin = CheckinService.checkin(Security.connectedUser());
         List<ActionPossible> actionsPossibles = ActionService.listerAction(checkin);
         ZoneState zoneState = ZoneService.getZoneState(checkin.zone);
         List<Salutation> salutations = SalutationService.findUnreadForPlayer(checkin.player);
@@ -35,7 +39,7 @@ public class Application extends Controller {
             }
         });
 
-        Checkin checkin = CheckinService.checkin(PlayerService.getRandom());
+        Checkin checkin = CheckinService.checkin(Security.connectedUser());
 
         List<ActionPossible> actionsPossibles = ActionService.listerAction(checkin);
 
@@ -44,7 +48,7 @@ public class Application extends Controller {
         List<Salutation> salutations = SalutationService.findUnreadForPlayer(checkin.player);
         SalutationService.markAsRead(salutations);
 
-        renderTemplate("Application/index.html", checkin, zoneState, actionsPossibles, salutations);
+        renderTemplate("Application/game.html", checkin, zoneState, actionsPossibles, salutations);
     }
 
     public static void action(String idCheckin, String actionPossible) {

@@ -123,11 +123,6 @@ public class PlayerService {
         return false;
     }
 
-    public static Player getRandom() {
-        List<Player> players = Player.findAll();
-        return players.get(new Random().nextInt(players.size()));
-    }
-
     public Player getPlayerByEmail(String email) throws exceptions.InvalidArgumentException {
 
         List<String> validationMessages = new ArrayList<>();
