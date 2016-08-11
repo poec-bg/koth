@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class PlayerService {
 
@@ -63,14 +64,7 @@ public class PlayerService {
         player.usrPassword = encodePassword(usrPassword);
         player.firstName = firstName;
         player.lastName = lastName;
-
         player.save();
-
-        PreparedStatement preparedStatement = DBService.get().getConnection().prepareStatement("INSERT INTO Player (`email`, `usrPassword`, `firstName`, `lastName`) VALUES (?, ? , ? , ? )");
-        preparedStatement.setString(1, player.email);
-        preparedStatement.setString(2, player.usrPassword);
-        preparedStatement.setString(3, player.firstName);
-        preparedStatement.setString(4, player.lastName);
 
         return player;
     }
@@ -80,14 +74,8 @@ public class PlayerService {
             throw new InvalidArgumentException(new String[]{"Le client ne peut être null"});
         }
         player.isSupprime = true;
+        player.merge();
 
-        try {
-            PreparedStatement preparedStatement = DBService.get().getConnection().prepareStatement("UPDATE Player SET (`isSupprime`) VALUES (?)");
-            preparedStatement.setBoolean(1, player.isSupprime);
-            preparedStatement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private String encodePassword(String password) {
@@ -138,10 +126,11 @@ public class PlayerService {
             ResultSet result = requete.executeQuery("SELECT * FROM Player WHERE email='" + email + "'");
             if (result.next()) {
                 Player player = new Player();
+                player.id = Long.valueOf(result.getString("id"));
                 player.email = result.getString("email");
                 player.firstName = result.getString("firstName");
                 player.lastName = result.getString("lastName");
-                player.isSupprime = result.getBoolean("isSupprime");
+                player.isSupprime = result.getBoolean("isSupprime");;
                 return player;
             }
         } catch (SQLException e) {

@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.secure.Secure;
 import controllers.secure.Security;
 import exceptions.InvalidArgumentException;
 import exceptions.MetierException;
@@ -96,7 +97,6 @@ public class Application extends Controller {
             notFoundIfNull(player);
 
             PlayerService.get().supprimer(player);
-            PlayerService.get().clear();
 
         } catch (InvalidArgumentException e) {
             error(e);

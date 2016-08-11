@@ -1,5 +1,6 @@
 package services;
 
+import controllers.secure.Security;
 import models.Checkin;
 import models.Player;
 import models.Position;
@@ -18,9 +19,8 @@ public class CheckinService {
         checkin.date = DateService.get().currentDateTime().toDate();
         checkin.latitude = position.latitude;
         checkin.longitude = position.longitude;
-        checkin.player = player;
+        checkin.player = Security.connectedUser();
         checkin.zone = zone;
-        checkin.player.save(); //a retirer plus tard
         checkin.save();
         return checkin;
     }
