@@ -3,6 +3,7 @@ package services;
 import com.google.common.base.Strings;
 import exceptions.InvalidArgumentException;
 import exceptions.MetierException;
+import models.Checkin;
 import models.Player;
 import org.mindrot.jbcrypt.BCrypt;
 import services.db.DBService;
@@ -75,7 +76,6 @@ public class PlayerService {
         }
         player.isSupprime = true;
         player.merge();
-
     }
 
     private String encodePassword(String password) {
@@ -143,7 +143,7 @@ public class PlayerService {
     public void clear() {
         try {
             Statement requete = DBService.get().getConnection().createStatement();
-            requete.executeUpdate("DELETE FROM Player WHERE isSupprime='" + true + "'");
+            requete.executeUpdate("DELETE FROM Player");
         } catch (SQLException e) {
             e.printStackTrace();
         }

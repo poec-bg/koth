@@ -85,6 +85,7 @@ public class Application extends Controller {
 
     public static void deleteThisPlayer() throws Throwable {
         Player player = null;
+        Checkin checkin = null;
 
         if (validation.hasErrors()) {
             params.flash(); // add http parameters to the flash scope
@@ -95,8 +96,10 @@ public class Application extends Controller {
         try {
             player = Security.connectedUser();
             notFoundIfNull(player);
-
+            // doit trouver un moyen de supprimer tous les checkin lié au player pour pouvoir supprimer le player de la bdd
             PlayerService.get().supprimer(player);
+            PlayerService.get().clear();
+
 
         } catch (InvalidArgumentException e) {
             error(e);

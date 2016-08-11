@@ -1,6 +1,7 @@
 package services;
 
 import controllers.secure.Security;
+import exceptions.InvalidArgumentException;
 import models.Checkin;
 import models.Player;
 import models.Position;
@@ -28,4 +29,9 @@ public class CheckinService {
     public static Checkin getCheckin(String idCheckin) {
         return Checkin.findById(Long.parseLong(idCheckin));
     }
+
+    public static Checkin getCheckinByPlayer(Player player) {
+        return Checkin.findById(Long.parseLong(String.valueOf(Security.connectedUser())));
+    }
+
 }
