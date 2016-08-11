@@ -1,11 +1,11 @@
 Player(luke.skywalker@gmail.com):
     email: "luke.skywalker@gmail.com"
-    usrPassword: "luke.skywalker@gmail.com"
+    usrPassword: "$2a$06$XNNjq5GnkzivbZoy4vwq6eu.W4/ecwqJAgTTT.NBHVLlfn.FPX4DK"
     firstName: "Luke"
     lastName: "Skywalker"
 
 Player(han.solo@gmail.com):
     email: "han.solo@gmail.com"
-    usrPassword: "han.solo@gmail.com"
+    usrPassword: "$2a$06$xbjzUT9cX.V.qebbm3p7dOaCBPPVmjpeRlXgueeupfElfx.yVr9W6"
     firstName: "Han"
     lastName: "Solo"
