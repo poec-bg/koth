@@ -30,8 +30,5 @@ public class CheckinService {
         return Checkin.findById(Long.parseLong(idCheckin));
     }
 
-    public static Checkin getCheckinByPlayer(Player player) {
-        return Checkin.findById(Long.parseLong(String.valueOf(Security.connectedUser())));
-    }
 
 }

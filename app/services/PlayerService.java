@@ -3,7 +3,6 @@ package services;
 import com.google.common.base.Strings;
 import exceptions.InvalidArgumentException;
 import exceptions.MetierException;
-import models.Checkin;
 import models.Player;
 import org.mindrot.jbcrypt.BCrypt;
 import services.db.DBService;
@@ -15,8 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+
 
 public class PlayerService {
 
@@ -65,6 +63,7 @@ public class PlayerService {
         player.usrPassword = encodePassword(usrPassword);
         player.firstName = firstName;
         player.lastName = lastName;
+
         player.save();
 
         return player;
@@ -75,7 +74,7 @@ public class PlayerService {
             throw new InvalidArgumentException(new String[]{"Le client ne peut être null"});
         }
         player.isSupprime = true;
-        player.merge();
+        player.delete();
     }
 
     private String encodePassword(String password) {
@@ -140,12 +139,12 @@ public class PlayerService {
         return null;
     }
 
-    public void clear() {
-        try {
-            Statement requete = DBService.get().getConnection().createStatement();
-            requete.executeUpdate("DELETE FROM Player");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void clear() {
+//        try {
+//            Statement requete = DBService.get().getConnection().createStatement();
+//            requete.executeUpdate("DELETE FROM Player");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
