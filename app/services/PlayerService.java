@@ -71,7 +71,6 @@ public class PlayerService {
     }
 
     public void supprimer(Player player) {
-
         try {
             Statement requete = DBService.get().getConnection().createStatement();
             requete.executeUpdate("DELETE FROM Salutation WHERE from_id OR to_id='" + player.id + "'");
@@ -80,7 +79,6 @@ public class PlayerService {
             requete.executeUpdate("DELETE FROM PlayerRessource WHERE player_id='" + player.id + "'");
             requete.executeUpdate("DELETE FROM ZoneState WHERE player_id='" + player.id + "'");
             requete.executeUpdate("DELETE FROM Player WHERE id='" + player.id + "'");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

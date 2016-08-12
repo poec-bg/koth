@@ -96,6 +96,7 @@ public class Application extends Controller {
         player = Security.connectedUser();
         notFoundIfNull(player);
         PlayerService.get().supprimer(player);
+        Secure.logout();
         Application.index();
     }
 }
