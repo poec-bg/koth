@@ -1,6 +1,7 @@
 package services;
 
 import com.google.common.base.Strings;
+import controllers.secure.Security;
 import exceptions.InvalidArgumentException;
 import exceptions.MetierException;
 import models.Player;
@@ -69,12 +70,20 @@ public class PlayerService {
         return player;
     }
 
-    public void supprimer(Player player) throws InvalidArgumentException {
-        if (player == null) {
-            throw new InvalidArgumentException(new String[]{"Le client ne peut être null"});
+    public void supprimer(Player player) {
+
+        try {
+            Statement requete = DBService.get().getConnection().createStatement();
+            requete.executeUpdate("DELETE FROM Salutation WHERE from_id OR to_id='" + player.id + "'");
+            requete.executeUpdate("DELETE FROM Action WHERE player_id='" + player.id + "'");
+            requete.executeUpdate("DELETE FROM Checkin WHERE player_id='" + player.id + "'");
+            requete.executeUpdate("DELETE FROM PlayerRessource WHERE player_id='" + player.id + "'");
+            requete.executeUpdate("DELETE FROM ZoneState WHERE player_id='" + player.id + "'");
+            requete.executeUpdate("DELETE FROM Player WHERE id='" + player.id + "'");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        player.isSupprime = true;
-        player.delete();
     }
 
     private String encodePassword(String password) {
@@ -138,13 +147,4 @@ public class PlayerService {
 
         return null;
     }
-
-//    public void clear() {
-//        try {
-//            Statement requete = DBService.get().getConnection().createStatement();
-//            requete.executeUpdate("DELETE FROM Player");
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }

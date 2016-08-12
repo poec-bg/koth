@@ -93,17 +93,9 @@ public class Application extends Controller {
             deletePlayer();
         }
 
-        try {
-            player = Security.connectedUser();
-            notFoundIfNull(player);
-            // doit trouver un moyen de supprimer tous les checkin lié au player pour pouvoir supprimer le player de la bdd
-            PlayerService.get().supprimer(player);
-            PlayerService.get().clear();
-
-
-        } catch (InvalidArgumentException e) {
-            error(e);
-        }
+        player = Security.connectedUser();
+        notFoundIfNull(player);
+        PlayerService.get().supprimer(player);
         Application.index();
     }
 }

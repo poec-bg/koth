@@ -9,6 +9,7 @@ import java.util.Map;
 @Entity
 public class Player extends Model {
 
+
     public String email;
     public String usrPassword;
     public String lastName;
